@@ -1,6 +1,6 @@
 'use client';
-import Voting from "@/app/components/shared/Voting";
-import NotConnected from "@/app/components/shared/NotConnected";
+import Voting from "@/components/shared/Voting";
+import NotConnected from "@/components/shared/NotConnected";
 import { useAccount } from "wagmi";
 
 export default function Home() {
