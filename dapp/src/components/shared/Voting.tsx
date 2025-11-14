@@ -15,7 +15,7 @@ import {useReadContract} from 'wagmi';
 import {writeContract} from "@wagmi/core";
 
 export default function VotingPage() {
-    const {address, isConnected} = useAccount();
+    const {address, addresses, isConnected} = useAccount();
     const [activeTab, setActiveTab] = useState<'registration' | 'proposals' | 'vote' | 'results'>('registration');
     let [currentStatus, setCurrentStatus] = useState('');
 
@@ -38,7 +38,7 @@ export default function VotingPage() {
     });
 
     // Vérifie si l'utilisateur est l'owner
-    const {data: owner} = useReadContract({
+    const {data: owner, error: ownerError} = useReadContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'owner',
@@ -163,7 +163,7 @@ export default function VotingPage() {
             {/* Contenu */}
             <Card className="p-6">
                 {activeTab === 'registration' && <Registration isOwner={isOwner}/>}
-                {/*{activeTab === 'proposals' && <Proposals/>}*/}
+                {activeTab === 'proposals' && <Proposals/>}
                 {/*{activeTab === 'vote' && <Vote/>}*/}
                 {/*{activeTab === 'results' && <Results/>}*/}
             </Card>
