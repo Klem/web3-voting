@@ -45,6 +45,8 @@ export default function VotingPage() {
         query: { enabled: !!address },
     });
 
+    console.log(ownerError)
+
     const handleAdminAction = (fn: string) => () => {
         writeContract({
             address: CONTRACT_ADDRESS,
@@ -164,7 +166,7 @@ export default function VotingPage() {
             <Card className="p-6">
                 {activeTab === 'registration' && <Registration isOwner={isOwner}/>}
                 {activeTab === 'proposals' && <Proposals/>}
-                {/*{activeTab === 'vote' && <Vote/>}*/}
+                {activeTab === 'vote' && <Vote/>}
                 {/*{activeTab === 'results' && <Results/>}*/}
             </Card>
         </div>
