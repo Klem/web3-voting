@@ -7,12 +7,10 @@ import {Card} from '@/components/ui/card';
 import Proposals from '@/components/shared/Proposals';
 import Registration from '@/components/shared/Registration';
 import Vote from '@/components/shared/Vote';
-import Results from '@/components/shared/Results';
-
 import {useAccount, useWaitForTransactionReceipt, useWriteContract} from 'wagmi';
 import {CONTRACT_ADDRESS, CONTRACT_ABI} from '@/utils/constants';
 import {useReadContract} from 'wagmi';
-import {writeContract} from "@wagmi/core";
+
 
 export default function VotingPage() {
     const {address, addresses, isConnected} = useAccount();
