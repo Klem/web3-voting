@@ -10,17 +10,15 @@ import {Card} from '@/components/ui/card';
 
 import {
     useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt, usePublicClient,
-    useSimulateContract
 } from 'wagmi';
 import {CONTRACT_ADDRESS, CONTRACT_ABI} from '@/utils/constants';
 import {isAddress, parseAbiItem} from 'viem';
-import {publicClient} from "@/lib/client";
-import {simulateContract} from "@wagmi/core";
 
 export default function Registration({isOwner}: { isOwner: boolean | undefined }) {
     const {address} = useAccount();
     const [voterAddress, setVoterAddress] = useState('');
     const [error, setError] = useState('');
+    const [refreshVoters, setRefreshVoters] = useState(0);
 
     // Lecture du workflowStatus (0 = RegisteringVoters)
     const {data: workflowStatus} = useReadContract({
@@ -38,6 +36,7 @@ export default function Registration({isOwner}: { isOwner: boolean | undefined }
     useEffect(() => {
         if (isConfirmed) {
             setVoterAddress('');
+            setRefreshVoters(prev => prev + 1)
         }
     }, [isConfirmed]);
 
@@ -81,13 +80,9 @@ export default function Registration({isOwner}: { isOwner: boolean | undefined }
     // Si phase d'inscription fermée
     if (!isRegistrationOpen) {
         return (
-            <Card className="p-6">
-                <Alert>
-                    <AlertDescription>
-                        La phase d'inscription des votants est terminée.
-                    </AlertDescription>
-                </Alert>
-            </Card>
+            <AlertDescription>
+                La phase d'inscription des votants est terminée.
+            </AlertDescription>
         );
     }
 
@@ -148,7 +143,7 @@ export default function Registration({isOwner}: { isOwner: boolean | undefined }
             {/* Liste des votants enregistrés */}
             <div>
                 <h3 className="text-lg font-medium mb-3">Votants enregistrés</h3>
-                <VotersList/>
+                <VotersList  key={refreshVoters} />
             </div>
         </div>
     );
@@ -173,7 +168,7 @@ function VotersList() {
                 address: CONTRACT_ADDRESS,
                 event: parseAbiItem('event VoterRegistered(address voterAddress)'),
                 fromBlock:
-                    9621108n,
+                    9628686n,
                 toBlock: 'latest',
             });
 
