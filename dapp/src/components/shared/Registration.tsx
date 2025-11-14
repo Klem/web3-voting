@@ -164,11 +164,14 @@ function VotersList() {
         if (!client) return;
 
         try {
+
+            const current = await client.getBlockNumber();
+            const from = current > 1000n ? current - 1000n : 0n;
+
             const logs = await client.getLogs({
                 address: CONTRACT_ADDRESS,
                 event: parseAbiItem('event VoterRegistered(address voterAddress)'),
-                fromBlock:
-                    9628686n,
+                fromBlock: from,
                 toBlock: 'latest',
             });
 
