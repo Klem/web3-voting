@@ -42,6 +42,7 @@ export default function VotingProposals() {
     } = useReadContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
+        account: address,
         functionName: 'getVoter',
         args: address ? [address] : undefined,
         query: {

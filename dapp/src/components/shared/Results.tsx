@@ -63,6 +63,7 @@ export default function Results() {
 
 // Un petit composant séparé pour chaque proposition → plus de problème de hooks
 function ProposalResult({ id, totalProposals }: { id: number; totalProposals: number }) {
+    if (id === 0) return null; // on ignore GENESIS
     const { data, isLoading } = useReadContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,

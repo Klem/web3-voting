@@ -18,6 +18,8 @@ export default function VotingPage() {
     const [activeTab, setActiveTab] = useState<'registration' | 'proposals' | 'vote' | 'results'>('registration');
     let [currentStatus, setCurrentStatus] = useState('');
 
+    console.log("Connected: ", address)
+
     const {writeContract, data: hash, error: writeError, isPending} = useWriteContract();
     const {isLoading: isConfirming, isSuccess: isConfirmed} = useWaitForTransactionReceipt({hash});
 
@@ -44,7 +46,6 @@ export default function VotingPage() {
         query: { enabled: !!address },
     });
 
-    console.log(ownerError)
 
     const handleAdminAction = (fn: string) => () => {
         writeContract({

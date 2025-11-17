@@ -51,6 +51,7 @@ export default function Proposals() {
             address: CONTRACT_ADDRESS,
             abi: CONTRACT_ABI,
             functionName: 'addProposal',
+            account: address,
             args: [proposalText],
         });
     };
@@ -144,10 +145,14 @@ export default function Proposals() {
 
 // Composant identique à ton ancien, mais qui marche
 function ProposalItem({ id }: { id: number }) {
+
+    if (id === 0) return null; // on ignore GENESIS
+    const { address } = useAccount();
     const { data, error, isLoading, refetch } = useReadContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'getOneProposal',
+        account: address,
         args: [BigInt(id)],
         query: {
             retry: false, // important when it reverts
