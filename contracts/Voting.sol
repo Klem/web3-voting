@@ -148,4 +148,16 @@ contract Voting is Ownable {
         workflowStatus = WorkflowStatus.VotesTallied;
         emit WorkflowStatusChange(WorkflowStatus.VotingSessionEnded, WorkflowStatus.VotesTallied);
     }
+
+    function setWorkflowStatus() external onlyOwner {
+        workflowStatus = WorkflowStatus.RegisteringVoters;
+    }
+
+
+    function reset() external onlyOwner {
+        delete proposalsArray;
+        winningProposalID = 0;
+        workflowStatus = WorkflowStatus.RegisteringVoters;
+    }
+
 }

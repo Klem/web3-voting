@@ -34,24 +34,33 @@ export default function VotingProposals() {
         functionName: 'workflowStatus',
     });
 
-    const { data: voterData } = useReadContract({
+    const {
+        data: voterData,
+        error: voterError,
+        isLoading: voterLoading,
+        refetch: refetchVoter
+    } = useReadContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'getVoter',
         args: address ? [address] : undefined,
-        query: { enabled: !!address && isConnected },
+        query: {
+            enabled: !!address && isConnected,
+            retry: false,                 // important quand ça revert
+            refetchOnWindowFocus: false,
+        },
     });
-
+    console.log('Voter debug →', { address, voterData, voterError });
     const voter = voterData as Voter | undefined;
     const isRegistered = voter?.isRegistered === true;
     const hasVoted = voter?.hasVoted === true;
     const isVotingOpen = workflowStatus === 3; // VotingSessionStarted
-
     const { data: proposalsCount, refetch: refetchCount } = useReadContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'getProposalsCount',
     });
+console.log(voterData)
 
     // --- Écriture : setVote ---
     const { writeContract, data: hash, error: writeError, isPending } = useWriteContract();
