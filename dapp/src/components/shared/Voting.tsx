@@ -126,6 +126,13 @@ export default function VotingPage() {
                         >
                             {isPending || isConfirming ? 'En cours...' : 'Comptabiliser'}
                         </Button>
+
+                        <Button onClick={handleAdminAction('reset')}
+                                disabled={isPending || isConfirming}
+                                className="btn-admin col-span-2 md:col-span-1"
+                        >
+                            {isPending || isConfirming ? 'En cours...' : 'Reset'}
+                        </Button>
                     </div>
                 </div>
             )}
@@ -165,7 +172,7 @@ export default function VotingPage() {
                 {activeTab === 'registration' && <Registration isOwner={isOwner}/>}
                 {activeTab === 'proposals' && <Proposals/>}
                 {activeTab === 'vote' && <Vote/>}
-                {/*{activeTab === 'results' && <Results/>}*/}
+                {activeTab === 'results' && <Results/>}
             </Card>
         </div>
     );
