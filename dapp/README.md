@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Web3 Voting – Mon appli de vote décentralisé
 
-## Getting Started
+Une application de vote simple, transparente et 100 % on-chain, construite avec Next.js, wagmi, viem et le contrat Voting.sol made in Alyra.
 
-First, run the development server:
+Tout se passe sur la blockchain : inscription des votants, soumission de propositions, vote (1 personne = 1 vote), et enfin affichage des résultats avec barre de progression.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Aucune base de données, aucun serveur centralisé : tout est vérifiable directement sur la blockchain.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Fonctionnalités
+- Phase 1 : Admin inscrit les votants
+- Phase 2 : Les votants proposent des idées
+- Phase 3 : Session de vote ouverte (1 vote par personne)
+- Phase 4 : Résultats finaux avec la proposition gagnante mise en évidence
+- Optionel: L'admin peut reset les propostion. Les votant ne sont pas affecté
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Demo live
+https://web3-voting-eight.vercel.app/
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Stack technique
+- Next.js 14 (app router)
+- Tailwind + shadcn/ui
+- wagmi + viem
+- Contrat Solidity : Voting.sol (Alyra) déployé sur Sepolia
+- Déploiement : Vercel
 
-## Learn More
+### Comment tester en 30 secondes
+1. Va sur https://web3-voting-eight.vercel.app/
+2. Connecte ton wallet MetaMask (Sepolia)
+3. Si tu es l’admin (0x378E…F7Fd) → tu peux gérer les phases
+4. Sinon demande à être ajouté comme votant et teste tout le flow !
 
-To learn more about Next.js, take a look at the following resources:
+### Code source
+https://github.com/Nekroin/web3-voting
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Fait avec amour en France par @Nekroin – 17 novembre 2025
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+N’hésite pas à me dire ce que tu en penses ou à proposer des idées !
