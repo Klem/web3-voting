@@ -189,9 +189,13 @@ function ProposalVoteItem({
     isSelected: boolean;
     disabled: boolean;
 }) {
+    if (id === 0) return null; // on ignore GENESIS
+    const { address } = useAccount();
+
     const { data: data, isLoading, refetch } = useReadContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
+        account: address,
         functionName: 'getOneProposal',
         args: [BigInt(id)],
     });

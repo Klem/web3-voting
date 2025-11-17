@@ -38,6 +38,7 @@ export default function Proposals() {
         functionName: 'getProposalsCount',
     });
 
+
     // Ajout de proposition
     const { writeContract, data: hash } = useWriteContract();
     const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({ hash });
@@ -130,7 +131,7 @@ export default function Proposals() {
                 </h3>
 
                 <div className="space-y-2">
-                    {proposalsCount && Number(proposalsCount) > 0 ? (
+                    {proposalsCount && Number(proposalsCount) > 1 ? (
                         Array.from({ length: Number(proposalsCount) }).map((_, i) => (
                             <ProposalItem key={i} id={i} />
                         ))
