@@ -10,6 +10,7 @@ import Vote from '@/components/shared/Vote';
 import {useAccount, useWaitForTransactionReceipt, useWriteContract} from 'wagmi';
 import {CONTRACT_ADDRESS, CONTRACT_ABI} from '@/utils/constants';
 import {useReadContract} from 'wagmi';
+import Results from "@/components/shared/Results";
 
 
 export default function VotingPage() {
