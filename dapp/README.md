@@ -11,10 +11,16 @@ Aucune base de données, aucun serveur centralisé : tout est vérifiable direct
 - Phase 2 : Les votants proposent des idées
 - Phase 3 : Session de vote ouverte (1 vote par personne)
 - Phase 4 : Résultats finaux avec la proposition gagnante mise en évidence
-- Optionel: L'admin peut reset les propostion. Les votant ne sont pas affecté
+- Optionel: L'admin peut reset les propostion. Les votants ne sont pas affecté
 
 ### Demo live
 https://web3-voting-eight.vercel.app/
+
+### Video
+dapp/demo.mp4
+
+### Historique du contrat apres la demo
+https://sepolia.etherscan.io/address/0x897C970d5Afb412d61b80ff39A89102247187Df8
 
 ### Stack technique
 - Next.js 14 (app router)
@@ -23,15 +29,5 @@ https://web3-voting-eight.vercel.app/
 - Contrat Solidity : Voting.sol (Alyra) déployé sur Sepolia
 - Déploiement : Vercel
 
-### Comment tester en 30 secondes
-1. Va sur https://web3-voting-eight.vercel.app/
-2. Connecte ton wallet MetaMask (Sepolia)
-3. Si tu es l’admin (0x378E…F7Fd) → tu peux gérer les phases
-4. Sinon demande à être ajouté comme votant et teste tout le flow !
-
 ### Code source
 https://github.com/Nekroin/web3-voting
-
-Fait avec amour en France par @Nekroin – 17 novembre 2025
-
-N’hésite pas à me dire ce que tu en penses ou à proposer des idées !
